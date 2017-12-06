@@ -1,0 +1,56 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vnet_name": {
+            "type": "string"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/7b13dc94-2b54-4cdf-a247-bbdebdb97f4f/resourceGroups/myResourceGroupVM/providers/Microsoft.Network/virtualNetworks/myVMVNET'.",
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[parameters('virtualNetworks_myVMVNET_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "koreacentral",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "4ebcb317-281f-4073-8b8e-8e0a7863d7a1",
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "10.0.0.0/16"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "myVMSubnet",
+                        "etag": "W/\"09de9e35-4651-437a-80e4-5cb567e024d4\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "addressPrefix": "10.0.0.0/24"
+                        }
+                    }
+                ],
+                "virtualNetworkPeerings": []
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/7b13dc94-2b54-4cdf-a247-bbdebdb97f4f/resourceGroups/myResourceGroupVM/providers/Microsoft.Network/virtualNetworks/myVMVNET/subnets/myVMSubnet'.",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(parameters('virtualNetworks_myVMVNET_name'), '/', parameters('subnets_myVMSubnet_name'))]",
+            "apiVersion": "2017-06-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "10.0.0.0/24"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_myVMVNET_name'))]"
+            ]
+        }
+    ]
+}
